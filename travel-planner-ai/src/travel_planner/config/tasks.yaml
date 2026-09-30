@@ -1,0 +1,78 @@
+research_destination:
+  description: >
+    Research the destination {destination} for a traveler departing from
+    {source}, interested in {interests}, with a {travel_style} travel
+    style. Identify:
+    - Top attractions and activities matching {interests}
+    - Local culture and customs worth knowing
+    - Typical weather and the best time of year to visit
+    - Any seasonal events or considerations relevant to a {days}-day trip
+  expected_output: >
+    A structured research brief in Markdown with clear sections for
+    "Top Attractions", "Culture & Customs", and "Weather & Best Time to
+    Visit", listing specific, real place names and details.
+  agent: destination_researcher
+
+plan_budget_and_stay:
+  description: >
+    Using the destination research already gathered by the team, create
+    a realistic budget plan and stay/transport recommendations for a
+    {days}-day trip from {source} to {destination} with a total budget
+    of {budget} and a {travel_style} travel style. Include:
+    - A numeric budget breakdown (transport, stay, food, activities,
+      miscellaneous) that sums to approximately {budget}
+    - 3-5 recommended hotels or stay options suited to a {travel_style}
+      style, with an approximate price range and one-line description
+      for each
+    - Recommended mode(s) of transport from {source} to {destination}
+      and around {destination}
+  expected_output: >
+    A Markdown section titled "Estimated Budget" containing a numeric
+    budget breakdown (table preferred), and a section titled
+    "Recommended Hotels" listing 3-5 named stay options with price
+    ranges.
+  agent: budget_logistics_planner
+
+create_itinerary:
+  description: >
+    Using the destination research and the budget/logistics plan already
+    produced by the team, build a complete day-by-day itinerary covering
+    all {days} days of the trip from {source} to {destination}. For each
+    day, plan a Morning, Afternoon, and Evening activity, incorporating
+    the attractions identified in the research and staying consistent
+    with the {travel_style} style and {interests} interests. Account for
+    realistic travel time and pacing, including arrival and departure
+    days.
+  expected_output: >
+    A Markdown section titled "Daily Itinerary" with a "### Day N"
+    subsection for every day of the trip, each containing "Morning",
+    "Afternoon", and "Evening" activities with brief, specific
+    descriptions.
+  agent: itinerary_planner
+
+compile_travel_plan:
+  description: >
+    Compile a single, complete, polished Markdown travel plan for the
+    trip from {source} to {destination} ({days} days, budget {budget},
+    {travel_style} style, interests: {interests}). Combine the
+    destination research, the budget and hotel recommendations, and the
+    day-by-day itinerary already produced by the team into one cohesive
+    document. Additionally add:
+    - A short, engaging "Trip Summary" paragraph
+    - "Food to Try": local dishes and food experiences at {destination}
+    - "Travel Tips": practical tips on transport, safety, customs, and
+      timing
+    - "Packing Checklist": a checklist appropriate for the destination,
+      duration, and travel style
+    Do not simply repeat prior content verbatim - integrate it into a
+    clean, consistent, well-formatted final report.
+  expected_output: >
+    A complete Markdown document with the following sections, in this
+    exact order: "# Travel Plan", "## Trip Summary", "## Daily
+    Itinerary" (with "### Day N" and Morning/Afternoon/Evening
+    subsections for every day), "## Estimated Budget", "## Recommended
+    Hotels", "## Recommended Attractions", "## Food to Try", "## Travel
+    Tips", and "## Packing Checklist". Valid Markdown with headings,
+    bullet points, and tables where appropriate.
+  agent: local_experience_consultant
+  output_file: output/travel_plan.md
